@@ -1,5 +1,4 @@
 const path = require('path');
-const defaultSettings = require('./src/settings.js');
 module.exports = {
   entry: './src/main.js',
   output: {

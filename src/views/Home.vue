@@ -12,6 +12,10 @@
 
 <script>
 import axios from 'axios';
+axios.defaults.headers.post['Content-Type'] =
+  'application/x-www-form-urlencoded';
+axios.defaults.headers.post['authorityToken'] =
+  'f8e77c66-5569-43aa-867e-ddb154f1ddd1';
 export default {
   name: 'Home',
   data() {

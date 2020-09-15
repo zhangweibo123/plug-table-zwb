@@ -24,7 +24,7 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column
-          v-if="tableParameter.delMoreRow.show"
+          v-if="tableParameter.delMore.show"
           type="selection"
           width="55"
         >
