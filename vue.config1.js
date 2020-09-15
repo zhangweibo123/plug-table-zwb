@@ -1,12 +1,9 @@
 const path = require('path');
+
 module.exports = {
-  entry: './src/main.js',
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '',
-    filename: 'plug-table-list.min.js',
-    library: 'PlugTableList',
-    libraryTarget: 'umd',
-    umdNamedDefine: true
-  }
+  publicPath: './', // 基本路径
+  outputDir: 'dist', // 输出文件目录
+  lintOnSave: false, // eslint-loader 是否在保存的时候检查
+  chainWebpack: config => {},
+  productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
 };
