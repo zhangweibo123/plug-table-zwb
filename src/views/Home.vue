@@ -15,7 +15,7 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
 axios.defaults.headers.post['authorityToken'] =
-  'f8e77c66-5569-43aa-867e-ddb154f1ddd1';
+  'ce2d1f98-ba7e-4be0-b97e-0d86bc605c90';
 export default {
   name: 'Home',
   data() {
@@ -39,7 +39,7 @@ export default {
         delMore: {
           url: 'http://101.132.242.183:8030/deviceServer/device/delByIds',
           methods: 'delete',
-          show: true
+          show: false
         },
         searchById: {
           url: 'http://101.132.242.183:8030/deviceServer/device/getDeviceById',

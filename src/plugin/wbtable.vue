@@ -5,7 +5,7 @@
       icon="el-icon-plus"
       @click="openAddMod"
       v-if="tableParameter.add.show"
-      >新增设备</el-button
+      >新增</el-button
     >
     <el-button
       type="danger"
@@ -77,7 +77,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-sizes="[5, 10, 15, 20]"
-        :page-size="100"
+        :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="extCount"
       >
@@ -93,7 +93,7 @@ export default {
     return {
       tableList: [],
       extCount: 0,
-      pageSize: 5,
+      pageSize: Number(window.localStorage.getItem('pageSize')) || 5,
       pageNo: 0,
       checkouBoxRow: [],
       currentPage: 1,
@@ -131,6 +131,7 @@ export default {
     // 分页
     handleSizeChange(val) {
       this.pageSize = val;
+      window.localStorage.setItem('pageSize', val);
       this.getTableList();
     },
     handleCurrentChange(val) {
