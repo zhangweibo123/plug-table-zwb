@@ -47,7 +47,7 @@ span {
 }
 .filterDate {
   padding: 10px 20px;
-  width: 320px;
+  width: 360px;
   float: left;
 }
 .el-select {
