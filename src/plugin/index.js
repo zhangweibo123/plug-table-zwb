@@ -1,7 +1,6 @@
 import wbtable from './wbtable.vue';
 let table = {};
 table.install = function(Vue) {
-  Vue.prototype.$msg = 'Hello I am test.js';
   Vue.prototype.$myMethod = function(arr) {
     if (arr.length < 0) {
       return false;

@@ -4,16 +4,30 @@
       type="primary"
       icon="el-icon-plus"
       @click="openAddMod"
+      size="small"
       v-if="tableParameter.add.show"
       >新增</el-button
     >
     <el-button
       type="danger"
       icon="el-icon-delete"
+      size="small"
       v-if="tableParameter.delMore.show"
       @click="delMoreRow"
       >批量删除</el-button
     >
+    <el-button
+      icon="el-icon-search"
+      v-if="tableParameter.filterAllList.show"
+      size="small"
+      @click="filterMod"
+      >新增筛选条件</el-button
+    >
+    <wbfilter
+      v-if="tableParameter.filterAllList.show"
+      ref="wbfilter"
+      :axios="axios"
+    ></wbfilter>
     <div class="mytable">
       <el-table
         v-loading="loading"
@@ -87,6 +101,7 @@
 </template>
 
 <script>
+import wbfilter from './wbfilter.vue';
 export default {
   name: 'wbtable',
   data() {
@@ -101,11 +116,17 @@ export default {
     };
   },
   props: ['tableParameter', 'axios', 'tableHeader'],
-  components: {},
-  created() {
+  components: {
+    wbfilter: wbfilter
+  },
+  created() {},
+  mounted() {
     this.getTableList();
   },
   methods: {
+    filterMod() {
+      this.$refs.wbfilter.filterTreeMod();
+    },
     // 获取列表
     getTableList(pageNo) {
       this.loading = true;
@@ -114,7 +135,9 @@ export default {
         url: `${this.tableParameter.getList?.url}`,
         data: {
           pageSize: this.pageSize,
-          pageNo: pageNo || this.pageNo
+          pageNo: pageNo || this.pageNo,
+          fieldInfoResponses: this.$refs.wbfilter.filterList,
+          className: this.tableParameter.filterAllList.pageCode
         }
       }).then(res => {
         if (res.data.code == '200') {
