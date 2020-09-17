@@ -15,7 +15,7 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
 axios.defaults.headers['authorityToken'] =
-  'ce26bf4c-d2dc-47a1-b8af-4f8e8a5e9604';
+  'b7419ee0-22c6-4174-9985-f7539e2db55b';
 export default {
   name: 'Home',
   data() {
@@ -55,7 +55,19 @@ export default {
           url: 'http://101.132.242.183:8030/deviceServer/filter/field/list',
           methods: 'get',
           pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
-          show: false
+          show: true
+        },
+        saveFilter: {
+          url: 'http://101.132.242.183:8030/deviceServer/filter/getSaveFilter',
+          methods: 'post',
+          pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
+          show: true
+        },
+        filterSaveList: {
+          url: 'http://101.132.242.183:8030/deviceServer/filter/getSaveFilter',
+          methods: 'get',
+          pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
+          show: true
         }
       },
       tableHeader: [

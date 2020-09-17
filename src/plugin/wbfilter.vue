@@ -6,16 +6,19 @@
           v-model="searchList"
           size="mini"
           placeholder="请选择历史查询条件列表"
+          @change="checkfilter"
         >
-          <!-- <el-option
-            v-for="item in options"
+          <el-option
+            v-for="item in filterSaveList"
             :key="item.value"
             :label="item.label"
             :value="item.value"
           >
-          </el-option> -->
+          </el-option>
         </el-select>
-        <el-button size="mini" @click="save">保存查询条件</el-button>
+        <el-button size="mini" @click="filterNameMod = true"
+          >保存查询条件</el-button
+        >
         <el-button size="mini" @click="filterSearchList" type="primary"
           >查询</el-button
         >
@@ -49,6 +52,20 @@
         <el-button type="primary" @click="addFilterBtn">确 定</el-button>
       </div>
     </el-dialog>
+    <el-dialog title="输入筛选器名称" :visible.sync="filterNameMod">
+      <div>
+        <el-input type="text" placeholder="输入名称" v-model="filterName" />
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="filterNameMod = false">取 消</el-button>
+        <el-button
+          type="primary"
+          :disabled="!Boolean(filterName.length)"
+          @click="saveFilter"
+          >确 定</el-button
+        >
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -62,8 +79,11 @@ export default {
     return {
       loading: true,
       filterMod: false,
+      filterNameMod: false,
+      filterName: '',
       filterTree: [],
       filterList: [],
+      filterSaveList: [],
       filterItem: '',
       defaultProps: {
         children: 'childrenMenu',
@@ -80,12 +100,45 @@ export default {
   },
   created() {
     this.getFilterAllList();
+    this.getSaveFilterList();
   },
   methods: {
-    // 保存
-    save() {
-      console.log(this.filterList);
+    // 选择过滤器
+    checkfilter(val) {
+      console.log(val);
     },
+    // 获取筛选下拉框的列表
+    getSaveFilterList() {
+      this.axios({
+        method: this.$parent.tableParameter.filterSaveList?.methods,
+        url: `${this.$parent.tableParameter.filterSaveList?.url}?className=${this.$parent.tableParameter.saveFilter?.pageCode}`,
+        showMag: true
+      }).then(res => {
+        if (res.data.code == '200') {
+          this.filterSaveList = res.data.data;
+        }
+      });
+    },
+    // 保存
+    saveFilter() {
+      this.axios({
+        method: this.$parent.tableParameter.saveFilter?.methods,
+        url: `${this.$parent.tableParameter.saveFilter?.url}`,
+        showMag: true,
+        data: {
+          fieldInfoResponses: this.filterList,
+          name: this.filterName,
+          className: this.$parent.tableParameter.saveFilter?.pageCode,
+          userCode: window.localStorage.getItem('userCode')
+        }
+      }).then(res => {
+        if (res.data.code == '200') {
+          this.filterNameMod();
+          this.getSaveFilterList();
+        }
+      });
+    },
+    // 查询按钮
     filterSearchList() {
       this.$parent.getTableList();
     },

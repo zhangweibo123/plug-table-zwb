@@ -5,26 +5,26 @@
       icon="el-icon-plus"
       @click="openAddMod"
       size="small"
-      v-if="tableParameter.add.show"
+      v-if="tableParameter.add && tableParameter.add.show"
       >新增</el-button
     >
     <el-button
       type="danger"
       icon="el-icon-delete"
       size="small"
-      v-if="tableParameter.delMore.show"
+      v-if="tableParameter.delMore && tableParameter.delMore.show"
       @click="delMoreRow"
       >批量删除</el-button
     >
     <el-button
       icon="el-icon-search"
-      v-if="tableParameter.filterAllList.show"
+      v-show="tableParameter.filterAllList && tableParameter.filterAllList.show"
       size="small"
       @click="filterMod"
       >新增筛选条件</el-button
     >
     <wbfilter
-      v-if="tableParameter.filterAllList.show"
+      v-show="tableParameter.filterAllList && tableParameter.filterAllList.show"
       ref="wbfilter"
       :axios="axios"
     ></wbfilter>
@@ -38,7 +38,7 @@
         @selection-change="handleSelectionChange"
       >
         <el-table-column
-          v-if="tableParameter.delMore.show"
+          v-if="tableParameter.delMore && tableParameter.delMore.show"
           type="selection"
           width="55"
         >
@@ -64,19 +64,19 @@
             <el-button
               size="mini"
               type="primary"
-              v-if="tableParameter.searchById.show"
+              v-if="tableParameter.searchById && tableParameter.searchById.show"
               @click="getDetail(scope.$index, scope.row)"
               >详情</el-button
             >
             <el-button
               size="mini"
-              v-if="tableParameter.change.show"
+              v-if="tableParameter.change && tableParameter.change.show"
               @click="openChangeMod(scope.$index, scope.row)"
               >修改</el-button
             >
             <el-button
               size="mini"
-              v-if="tableParameter.del.show"
+              v-if="tableParameter.del && tableParameter.del.show"
               type="danger"
               @click="delRow(scope.$index, scope.row)"
               >删除</el-button
