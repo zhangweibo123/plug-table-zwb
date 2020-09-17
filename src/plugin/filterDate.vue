@@ -1,6 +1,6 @@
 <template>
   <div class="filterDate">
-    <span>
+    <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
     <el-date-picker
@@ -37,10 +37,17 @@ export default {
 span {
   font-size: 12px;
   color: #333333;
+  display: inline-block;
+  overflow: hidden;
+  width: 70px;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
 .filterDate {
   padding: 10px 20px;
-  width: 520px;
+  width: 320px;
   float: left;
 }
 .el-select {
@@ -48,7 +55,7 @@ span {
   margin: 0px 8px;
 }
 .el-date-editor {
-  width: 320px;
+  width: 200px;
   margin-right: 4px;
 }
 .el-icon-error {

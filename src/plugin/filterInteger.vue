@@ -1,6 +1,6 @@
 <template>
   <div class="filterInteger">
-    <span>
+    <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
     <el-select v-model="data.condition" de size="mini">
@@ -14,8 +14,9 @@
     </el-select>
     <el-input
       size="mini"
+      type="number"
       v-model="data.value"
-      placeholder="请输入内容"
+      placeholder="请输入数字"
     ></el-input>
     <i class="el-icon-error" @click="delItem"></i>
   </div>
@@ -62,10 +63,17 @@ export default {
 span {
   font-size: 12px;
   color: #333333;
+  display: inline-block;
+  overflow: hidden;
+  width: 70px;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
 .filterInteger {
   padding: 10px 20px;
-  width: 450px;
+  width: 320px;
   float: left;
 }
 .el-select {
@@ -73,7 +81,7 @@ span {
   margin: 0px 8px;
 }
 .el-input {
-  width: 140px;
+  width: 80px;
   margin-right: 4px;
 }
 .el-icon-error {

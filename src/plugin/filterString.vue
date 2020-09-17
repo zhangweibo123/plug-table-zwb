@@ -1,6 +1,6 @@
 <template>
   <div class="string">
-    <span>
+    <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
     <el-select v-model="data.condition" de size="mini">
@@ -63,10 +63,17 @@ export default {
 span {
   font-size: 12px;
   color: #333333;
+  display: inline-block;
+  overflow: hidden;
+  width: 70px;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
 .string {
   padding: 10px 20px;
-  width: 300px;
+  width: 320px;
   float: left;
 }
 .el-select {

@@ -10,18 +10,33 @@
         >
           <el-option
             v-for="item in filterSaveList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
           >
+            <span style="float: left">{{ item.name }}</span>
+            <span
+              @click.stop="delFilter(item.id)"
+              class="el-icon-error"
+              style="float: right; color: #8492a6; font-size: 13px;color:#F56C6C;line-height: 31px;"
+            ></span>
           </el-option>
         </el-select>
-        <el-button size="mini" @click="filterNameMod = true"
-          >保存查询条件</el-button
+        <div
+          style="margin-top:15px;display: inline-block;width: 38%;text-align:right;float:right;padding-right:20px"
         >
-        <el-button size="mini" @click="filterSearchList" type="primary"
-          >查询</el-button
-        >
+          <el-button
+            size="mini"
+            @click="
+              filterNameMod = true;
+              filterName = '';
+            "
+            >保存查询条件</el-button
+          >
+          <el-button size="mini" @click="filterSearchList" type="primary"
+            >查询</el-button
+          >
+        </div>
       </div>
       <div v-for="(item, index) in filterList" :key="index">
         <component
@@ -103,9 +118,25 @@ export default {
     this.getSaveFilterList();
   },
   methods: {
+    // 删除行信息
+    delFilter(id) {
+      this.axios({
+        method: this.$parent.tableParameter.delFilter?.methods,
+        url: `${this.$parent.tableParameter.delFilter?.url}/?id=${id}`,
+        showMag: true
+      }).then(res => {
+        if (res.data.code == '200') {
+          this.getSaveFilterList();
+        }
+      });
+    },
     // 选择过滤器
-    checkfilter(val) {
-      console.log(val);
+    checkfilter(id) {
+      this.filterSaveList.forEach(item => {
+        if (id == item.id) {
+          this.filterList = JSON.parse(JSON.stringify(item.fieldInfoResponses));
+        }
+      });
     },
     // 获取筛选下拉框的列表
     getSaveFilterList() {
@@ -123,17 +154,12 @@ export default {
     saveFilter() {
       this.axios({
         method: this.$parent.tableParameter.saveFilter?.methods,
-        url: `${this.$parent.tableParameter.saveFilter?.url}`,
+        url: `${this.$parent.tableParameter.saveFilter?.url}/?name=${this.filterName}&className=${this.$parent.tableParameter.saveFilter?.pageCode}&id=${this.searchList}`,
         showMag: true,
-        data: {
-          fieldInfoResponses: this.filterList,
-          name: this.filterName,
-          className: this.$parent.tableParameter.saveFilter?.pageCode,
-          userCode: window.localStorage.getItem('userCode')
-        }
+        data: this.filterList
       }).then(res => {
         if (res.data.code == '200') {
-          this.filterNameMod();
+          this.filterNameMod = false;
           this.getSaveFilterList();
         }
       });
