@@ -3,13 +3,22 @@
     <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
+    <el-select v-model="data.condition" de size="mini">
+      <el-option
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      >
+      </el-option>
+    </el-select>
     <el-date-picker
-      v-model="data.condition"
+      v-model="data.value"
       size="mini"
-      type="datetimerange"
-      start-placeholder="开始日期"
-      end-placeholder="结束日期"
-      :default-time="['12:00:00']"
+      format="yyyy-MM-dd"
+      value-format="yyyy-MM-dd"
+      type="date"
+      placeholder="选择日期"
     >
     </el-date-picker>
     <i class="el-icon-error" @click="delItem"></i>
@@ -20,12 +29,35 @@
 export default {
   name: 'filterDate',
   data() {
-    return {};
+    return {
+      options: [
+        {
+          value: '=',
+          label: '='
+        },
+        {
+          value: '<>',
+          label: '<>'
+        },
+        {
+          value: 'like',
+          label: '包含'
+        },
+        {
+          value: 'not like',
+          label: '不包含'
+        }
+      ]
+    };
   },
   props: ['data', 'index'],
   components: {},
   created() {},
   methods: {
+    fomateDate(val) {
+      let data = 'between ' + val[0] + ' and ' + val[1];
+      this.data.value = data;
+    },
     delItem() {
       this.$emit('delItem', this.index);
     }
@@ -55,7 +87,7 @@ span {
   margin: 0px 8px;
 }
 .el-date-editor {
-  width: 200px;
+  width: 140px;
   margin-right: 4px;
 }
 .el-icon-error {

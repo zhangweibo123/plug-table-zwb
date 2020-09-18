@@ -4,7 +4,7 @@
 改组件基于elementUi 是它的再次封装。
 
 ## 效果图
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20200915160849160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4MzIzNjU4,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200918152823385.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4MzIzNjU4,size_16,color_FFFFFF,t_70#pic_center)
 
 
 ## 引入
@@ -65,7 +65,27 @@ tableParameter: {
     url: '/systemServer/user',
     methods: 'put',
     show: true
-  }
+  },
+  filterAllList: {
+          url: '/deviceServer/filter/field/list',
+          methods: 'get',
+          show: true
+        },
+        saveFilter: {
+          url: '/deviceServer/filter/getSaveFilter',
+          methods: 'post',
+          show: true
+        },
+        filterSaveList: {
+          url: '/deviceServer/filter/getFilterList',
+          methods: 'get',
+          show: true
+        },
+        delFilter: {
+          url: 'http://192.168.3.101:8030/deviceServer/filter',
+          methods: 'delete',
+          show: true
+        }
 },
 //传递表头
 tableHeader: [
