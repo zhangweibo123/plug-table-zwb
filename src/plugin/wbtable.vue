@@ -131,13 +131,13 @@ export default {
     getTableList(pageNo) {
       this.loading = true;
       this.axios({
-        method: this.tableParameter.getList?.methods,
-        url: `${this.tableParameter.getList?.url}`,
+        method: this.tableParameter.getList?.methods || 'post',
+        url: `${this.tableParameter.getList?.url}` || '/xmlhttp/',
         data: {
           pageSize: this.pageSize,
           pageNo: pageNo || this.pageNo,
           fieldInfoResponses: this.$refs.wbfilter.filterList,
-          className: this.tableParameter.filterAllList.pageCode
+          className: this.tableParameter.filterAllList?.pageCode
         }
       }).then(res => {
         if (res.data.code == '200') {
@@ -182,8 +182,8 @@ export default {
     },
     delRowAxios(row) {
       this.axios({
-        method: this.tableParameter.del?.methods,
-        url: `${this.tableParameter.del?.url}/${row.id}`,
+        method: this.tableParameter.del?.methods || 'get',
+        url: `${this.tableParameter.del?.url}/${row.id}` || '/xmlhttp/',
         showMsg: true
       }).then(res => {
         if (res.data.code == '200') {
@@ -218,8 +218,8 @@ export default {
         return item.id;
       });
       this.axios({
-        method: this.tableParameter.delMore?.methods,
-        url: `${this.tableParameter.delMore?.url}/?ids=${rowIds}`,
+        method: this.tableParameter.delMore?.methods || 'get',
+        url: `${this.tableParameter.delMore?.url}/?ids=${rowIds}` || '/xmlhttp/',
         showMsg: true
       }).then(res => {
         if (res.data.code == '200') {
@@ -231,8 +231,8 @@ export default {
     getDetail(index, row) {
       console.log(index);
       this.axios({
-        method: this.tableParameter.searchById?.methods,
-        url: `${this.tableParameter.searchById?.url}/${row.id}`
+        method: this.tableParameter.searchById?.methods || 'get',
+        url: `${this.tableParameter.searchById?.url}/${row.id}` || '/xmlhttp/'
       }).then(res => {
         if (res.data.code == '200') {
           this.$emit('goDetail', res.data.data);
@@ -248,8 +248,8 @@ export default {
     },
     add(data) {
       this.axios({
-        method: this.tableParameter.add?.methods,
-        url: `${this.tableParameter.add?.url}`,
+        method: this.tableParameter.add?.methods || 'post',
+        url: `${this.tableParameter.add?.url}` || '/xmlhttp/',
         data: data,
         showMsg: true
       }).then(res => {
@@ -261,8 +261,8 @@ export default {
     },
     change(data) {
       this.axios({
-        method: this.tableParameter.change?.methods,
-        url: `${this.tableParameter.change?.url}`,
+        method: this.tableParameter.change?.methods || 'post',
+        url: `${this.tableParameter.change?.url}` || '/xmlhttp/',
         data: data,
         showMsg: true
       }).then(res => {

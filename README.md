@@ -39,7 +39,7 @@ tableParameter: {
   getList: {
     url: '/systemServer/user/list',    //接口
     methods: 'post',				   //method
-    show: true      				   //是否现实
+    show: true      				   //是否显示该功能
   },		
   add: {
     url: '/systemServer/user',
@@ -67,25 +67,25 @@ tableParameter: {
     show: true
   },
   filterAllList: {
-          url: '/deviceServer/filter/field/list',
-          methods: 'get',
-          show: true
-        },
-        saveFilter: {
-          url: '/deviceServer/filter/getSaveFilter',
-          methods: 'post',
-          show: true
-        },
-        filterSaveList: {
-          url: '/deviceServer/filter/getFilterList',
-          methods: 'get',
-          show: true
-        },
-        delFilter: {
-          url: 'http://192.168.3.101:8030/deviceServer/filter',
-          methods: 'delete',
-          show: true
-        }
+   url: '/deviceServer/filter/field/list',
+     methods: 'get',
+     show: true
+   },
+   saveFilter: {
+     url: '/deviceServer/filter/getSaveFilter',
+     methods: 'post',
+     show: true
+   },
+   filterSaveList: {
+     url: '/deviceServer/filter/getFilterList',
+     methods: 'get',
+     show: true
+   },
+   delFilter: {
+     url: 'http://192.168.3.101:8030/deviceServer/filter',
+     methods: 'delete',
+     show: true
+   }
 },
 //传递表头
 tableHeader: [

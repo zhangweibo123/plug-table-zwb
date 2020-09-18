@@ -33,11 +33,11 @@ export default {
       options: [
         {
           value: '=',
-          label: '='
+          label: '等于'
         },
         {
           value: '<>',
-          label: '<>'
+          label: '不等于'
         }
       ],
       value: '='

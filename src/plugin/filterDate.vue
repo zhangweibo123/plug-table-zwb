@@ -32,19 +32,19 @@ export default {
       options: [
         {
           value: '=',
-          label: '='
+          label: '等于'
         },
         {
           value: '<>',
-          label: '<>'
+          label: '不等于'
         },
         {
           value: '>=',
-          label: '>='
+          label: '大于等于'
         },
         {
           value: '<=',
-          label: '<='
+          label: '小于等于'
         }
       ]
     };
