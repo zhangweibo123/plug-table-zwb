@@ -88,6 +88,7 @@
 import String from './filterString.vue';
 import Integer from './filterInteger.vue';
 import Date from './filterDate.vue';
+import Select from './filterSelect.vue';
 export default {
   name: 'wbfilter',
   data() {
@@ -111,7 +112,8 @@ export default {
   components: {
     String,
     Integer,
-    Date
+    Date,
+    Select
   },
   created() {
     this.getFilterAllList();

@@ -3,7 +3,7 @@
     <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
-    <el-select v-model="data.condition" de size="mini">
+    <el-select v-model="data.condition" size="mini">
       <el-option
         v-for="item in options"
         :key="item.value"
@@ -14,11 +14,10 @@
     </el-select>
     <el-date-picker
       v-model="data.value"
+      type="datetime"
       size="mini"
-      format="yyyy-MM-dd"
-      value-format="yyyy-MM-dd"
-      type="date"
-      placeholder="选择日期"
+      placeholder="选择日期时间"
+      @change="dataFormate"
     >
     </el-date-picker>
     <i class="el-icon-error" @click="delItem"></i>
@@ -54,9 +53,10 @@ export default {
   components: {},
   created() {},
   methods: {
-    fomateDate(val) {
-      let data = 'between ' + val[0] + ' and ' + val[1];
-      this.data.value = data;
+    dataFormate(val) {
+      console.log(val);
+      // let data = val.replace('z', ' ');
+      // this.data.value = data;
     },
     delItem() {
       this.$emit('delItem', this.index);

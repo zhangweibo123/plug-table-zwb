@@ -1,5 +1,5 @@
 <template>
-  <div class="filterInteger">
+  <div class="select">
     <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
@@ -12,22 +12,24 @@
       >
       </el-option>
     </el-select>
-    <el-input
-      size="mini"
-      type="number"
-      v-model="data.value"
-      placeholder="请输入数字"
-    ></el-input>
+    <el-select v-model="data.value" size="mini" style="width:140px;margin:0px">
+      <el-option
+        v-for="item in data.selectValues"
+        :key="item.key"
+        :label="item.value"
+        :value="item.key"
+      >
+      </el-option>
+    </el-select>
     <i class="el-icon-error" @click="delItem"></i>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'filterInteger',
+  name: 'Select',
   data() {
     return {
-      input: '',
       options: [
         {
           value: '=',
@@ -36,16 +38,9 @@ export default {
         {
           value: '<>',
           label: '<>'
-        },
-        {
-          value: 'like',
-          label: '包含'
-        },
-        {
-          value: 'not like',
-          label: '不包含'
         }
-      ]
+      ],
+      value: '='
     };
   },
   props: ['data', 'index'],
@@ -71,7 +66,7 @@ span {
   text-overflow: ellipsis;
   cursor: pointer;
 }
-.filterInteger {
+.select {
   padding: 10px 20px;
   width: 360px;
   float: left;
@@ -81,7 +76,7 @@ span {
   margin: 0px 8px;
 }
 .el-input {
-  width: 80px;
+  width: 140px;
   margin-right: 4px;
 }
 .el-icon-error {

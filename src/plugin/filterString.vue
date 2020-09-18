@@ -3,7 +3,7 @@
     <span :title="data.columnCn">
       {{ data.columnCn }}
     </span>
-    <el-select v-model="data.condition" de size="mini">
+    <el-select v-model="data.condition" size="mini">
       <el-option
         v-for="item in options"
         :key="item.value"
