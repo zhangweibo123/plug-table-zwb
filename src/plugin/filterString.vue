@@ -36,12 +36,12 @@ export default {
           label: '<>'
         },
         {
-          value: '>=',
-          label: '>='
+          value: 'like',
+          label: '包含'
         },
         {
-          value: '<=',
-          label: '<='
+          value: 'not like',
+          label: '不包含'
         }
       ],
       value: '='

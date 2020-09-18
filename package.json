@@ -1,6 +1,6 @@
 {
   "name": "plug-table-zwb",
-  "version": "0.3.6",
+  "version": "0.3.8",
   "private": false,
   "main": "lib/index.umd.min.js",
   "scripts": {
