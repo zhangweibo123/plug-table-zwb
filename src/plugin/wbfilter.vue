@@ -187,7 +187,7 @@ export default {
       });
     },
     addFilterBtn() {
-      this.filterList.push(this.filterItem);
+      this.filterList.push(JSON.parse(JSON.stringify(this.filterItem)));
       this.filterMod = false;
     },
     // 获取列表
