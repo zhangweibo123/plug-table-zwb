@@ -15,7 +15,7 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
 axios.defaults.headers['authorityToken'] =
-  'ebea7211-fbd6-4aab-893d-3061a835a6d6';
+  'd9f804f4-ad5c-41b4-a2f0-8308ef36333e';
 export default {
   name: 'Home',
   data() {
@@ -67,11 +67,6 @@ export default {
           url: 'http://192.168.3.101:8030/deviceServer/filter/getFilterList',
           methods: 'get',
           pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
-          show: true
-        },
-        delFilter: {
-          url: 'http://192.168.3.101:8030/deviceServer/filter',
-          methods: 'delete',
           show: true
         }
       },

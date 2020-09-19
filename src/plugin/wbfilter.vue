@@ -122,9 +122,12 @@ export default {
   methods: {
     // 删除行信息
     delFilter(id) {
+      if (!this.$parent.tableParameter.delFilter?.url) return;
       this.axios({
         method: this.$parent.tableParameter.delFilter?.methods || 'get',
-        url: `${this.$parent.tableParameter.delFilter?.url}/?id=${id}` || '/xmlhttp/',
+        url:
+          `${this.$parent.tableParameter.delFilter?.url}/?id=${id}` ||
+          '/xmlhttp/',
         showMag: true
       }).then(res => {
         if (res.data.code == '200') {
@@ -142,9 +145,12 @@ export default {
     },
     // 获取筛选下拉框的列表
     getSaveFilterList() {
+      if (!this.$parent.tableParameter.filterSaveList?.url) return;
       this.axios({
         method: this.$parent.tableParameter.filterSaveList?.methods || 'get',
-        url: `${this.$parent.tableParameter.filterSaveList?.url}?className=${this.$parent.tableParameter.saveFilter?.pageCode}`  || '/xmlhttp/',
+        url:
+          `${this.$parent.tableParameter.filterSaveList?.url}?className=${this.$parent.tableParameter.saveFilter?.pageCode}` ||
+          '/xmlhttp/',
         showMag: true
       }).then(res => {
         if (res.data.code == '200') {
@@ -154,9 +160,12 @@ export default {
     },
     // 保存
     saveFilter() {
+      if (!this.$parent.tableParameter.saveFilter?.url) return;
       this.axios({
         method: this.$parent.tableParameter.saveFilter?.methods || 'get',
-        url: `${this.$parent.tableParameter.saveFilter?.url}/?name=${this.filterName}&className=${this.$parent.tableParameter.saveFilter?.pageCode}&id=${this.searchList}`  || '/xmlhttp/',
+        url:
+          `${this.$parent.tableParameter.saveFilter?.url}/?name=${this.filterName}&className=${this.$parent.tableParameter.saveFilter?.pageCode}&id=${this.searchList}` ||
+          '/xmlhttp/',
         showMag: true,
         data: this.filterList
       }).then(res => {
@@ -194,9 +203,12 @@ export default {
     },
     // 获取列表
     getFilterAllList() {
+      if (!this.$parent.tableParameter.filterAllList?.url) return;
       this.axios({
         method: this.$parent.tableParameter.filterAllList?.methods || 'get',
-        url: `${this.$parent.tableParameter.filterAllList?.url}?className=${this.$parent.tableParameter.filterAllList?.pageCode}`  || '/xmlhttp/'
+        url:
+          `${this.$parent.tableParameter.filterAllList?.url}?className=${this.$parent.tableParameter.filterAllList?.pageCode}` ||
+          '/xmlhttp/'
       }).then(res => {
         if (res.data.code == '200') {
           this.filterTree = res.data.data;

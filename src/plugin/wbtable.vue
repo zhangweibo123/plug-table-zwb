@@ -130,6 +130,7 @@ export default {
     // 获取列表
     getTableList(pageNo) {
       this.loading = true;
+      if (!this.$parent.tableParameter.getList?.url) return;
       this.axios({
         method: this.tableParameter.getList?.methods || 'post',
         url: `${this.tableParameter.getList?.url}` || '/xmlhttp/',
@@ -181,6 +182,7 @@ export default {
         });
     },
     delRowAxios(row) {
+      if (!this.$parent.tableParameter.del?.url) return;
       this.axios({
         method: this.tableParameter.del?.methods || 'get',
         url: `${this.tableParameter.del?.url}/${row.id}` || '/xmlhttp/',
@@ -217,9 +219,11 @@ export default {
       let rowIds = this.checkouBoxRow.map(item => {
         return item.id;
       });
+      if (!this.$parent.tableParameter.delMore?.url) return;
       this.axios({
         method: this.tableParameter.delMore?.methods || 'get',
-        url: `${this.tableParameter.delMore?.url}/?ids=${rowIds}` || '/xmlhttp/',
+        url:
+          `${this.tableParameter.delMore?.url}/?ids=${rowIds}` || '/xmlhttp/',
         showMsg: true
       }).then(res => {
         if (res.data.code == '200') {
@@ -230,6 +234,7 @@ export default {
     // 查看详情
     getDetail(index, row) {
       console.log(index);
+      if (!this.$parent.tableParameter.searchById?.url) return;
       this.axios({
         method: this.tableParameter.searchById?.methods || 'get',
         url: `${this.tableParameter.searchById?.url}/${row.id}` || '/xmlhttp/'
@@ -247,6 +252,7 @@ export default {
       this.$emit('openChangeMod', row);
     },
     add(data) {
+      if (!this.$parent.tableParameter.add?.url) return;
       this.axios({
         method: this.tableParameter.add?.methods || 'post',
         url: `${this.tableParameter.add?.url}` || '/xmlhttp/',
@@ -260,6 +266,7 @@ export default {
       });
     },
     change(data) {
+      if (!this.$parent.tableParameter.change?.url) return;
       this.axios({
         method: this.tableParameter.change?.methods || 'post',
         url: `${this.tableParameter.change?.url}` || '/xmlhttp/',
