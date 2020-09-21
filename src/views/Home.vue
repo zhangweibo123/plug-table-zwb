@@ -15,56 +15,61 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
 axios.defaults.headers['authorityToken'] =
-  'd9f804f4-ad5c-41b4-a2f0-8308ef36333e';
+  'ef5d5c48-8efd-4dd9-b1cc-851bfcc2d9f4';
 export default {
   name: 'Home',
   data() {
     return {
       tableParameter: {
         getList: {
-          url: 'http://192.168.3.101:8030/deviceServer/device/getDeviceList',
-          methods: 'post',
+          url: `${process.env.VUE_APP_API_DEV}/systemServer/menu/list/1`,
+          methods: 'get',
           show: true
         },
+        // getList: {
+        //   url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/getDeviceList`,
+        //   methods: 'post',
+        //   show: true
+        // },
         add: {
-          url: 'http://192.168.3.101:8030/deviceServer/device/add',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/add`,
           methods: 'post',
           show: true
         },
         del: {
-          url: 'http://192.168.3.101:8030/deviceServer/device/delById',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/delById`,
           methods: 'delete',
           show: true
         },
         delMore: {
-          url: 'http://192.168.3.101:8030/deviceServer/device/delByIds',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/delByIds`,
           methods: 'delete',
           show: true
         },
         searchById: {
-          url: 'http://192.168.3.101:8030/deviceServer/device/getDeviceById',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/getDeviceById`,
           methods: 'get',
           show: true
         },
         change: {
-          url: 'http://192.168.3.101:8030/deviceServer/device/update',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/update`,
           methods: 'put',
           show: true
         },
         filterAllList: {
-          url: 'http://192.168.3.101:8030/deviceServer/filter/field/list',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/filter/field/list`,
           methods: 'get',
           pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
           show: true
         },
         saveFilter: {
-          url: 'http://192.168.3.101:8030/deviceServer/filter/getSaveFilter',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/filter/getSaveFilter`,
           methods: 'post',
           pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
           show: true
         },
         filterSaveList: {
-          url: 'http://192.168.3.101:8030/deviceServer/filter/getFilterList',
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/filter/getFilterList`,
           methods: 'get',
           pageCode: 'com.innovent.entity.device.entity.DeviceEntity',
           show: true
@@ -72,33 +77,28 @@ export default {
       },
       tableHeader: [
         {
-          label: '设备编号',
-          prop: 'deviceNo',
+          label: '菜单名称',
+          prop: 'menuName',
           type: 'text'
         },
         {
-          label: '设备名称',
-          prop: 'deviceName',
+          label: '菜单代码',
+          prop: 'menuCode',
           type: 'text'
         },
         {
-          label: '设备状态',
-          prop: 'deviceState',
+          label: '父菜单',
+          prop: 'parentMenu',
           type: 'text'
         },
         {
-          label: '设备地址',
-          prop: 'address',
+          label: '菜单id',
+          prop: 'id',
           type: 'text'
         },
         {
-          label: '版本',
-          prop: 'firmwareVersion',
-          type: 'text'
-        },
-        {
-          label: '设备类型',
-          prop: 'deviceType',
+          label: '菜单按钮',
+          prop: 'buttonList',
           type: 'text'
         }
       ],

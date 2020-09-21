@@ -35,6 +35,8 @@
         size="small"
         stripe
         style="width: 100%"
+        row-key="id"
+        :tree-props="{children: 'childrenMenu'}"
         @selection-change="handleSelectionChange"
       >
         <el-table-column
