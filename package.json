@@ -1,8 +1,9 @@
 {
   "name": "plug-table-zwb",
-  "version": "0.4.6",
+  "version": "0.4.8",
   "private": false,
   "main": "./src/plugin/index.js",
+  "keywords": "增删改查 table 表格 过滤器 filter",
   "scripts": {
     "serve": "vue-cli-service serve",
     "dev": "vue-cli-service serve",

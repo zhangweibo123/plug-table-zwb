@@ -36,7 +36,7 @@
         stripe
         style="width: 100%"
         row-key="id"
-        :tree-props="{children: 'childrenMenu'}"
+        :tree-props="{ children: 'childrenMenu' }"
         @selection-change="handleSelectionChange"
       >
         <el-table-column
@@ -82,6 +82,16 @@
               type="danger"
               @click="delRow(scope.$index, scope.row)"
               >删除</el-button
+            >
+            <el-button
+              size="mini"
+              v-if="
+                tableParameter.userDefinedBtn &&
+                  tableParameter.userDefinedBtn.show
+              "
+              type="danger"
+              @click="userDefinedBtn(scope.$index, scope.row)"
+              >{{ tableParameter.userDefinedBtn.label }}</el-button
             >
           </template>
         </el-table-column>
@@ -132,7 +142,7 @@ export default {
     // 获取列表
     getTableList(pageNo) {
       this.loading = true;
-      if (!this.$parent.tableParameter.getList?.url) return;
+      if (!this.tableParameter.getList?.url) return;
       this.axios({
         method: this.tableParameter.getList?.methods || 'post',
         url: `${this.tableParameter.getList?.url}` || '/xmlhttp/',
@@ -149,6 +159,10 @@ export default {
           this.extCount = res.data.extCount;
         }
       });
+    },
+    userDefinedBtn(index, row) {
+      console.log(index);
+      this.$emit('userDefined', row);
     },
     // checkbox多选列
     handleSelectionChange(val) {

@@ -6,6 +6,7 @@
       :axios="axios"
       :tableHeader="tableHeader"
       @goDetail="godetail"
+      @userDefined="userDefined"
     ></wbtable>
   </div>
 </template>
@@ -15,22 +16,22 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] =
   'application/x-www-form-urlencoded';
 axios.defaults.headers['authorityToken'] =
-  'ef5d5c48-8efd-4dd9-b1cc-851bfcc2d9f4';
+  '36e7c6aa-2359-4b47-84d9-98ad8c98171d';
 export default {
   name: 'Home',
   data() {
     return {
       tableParameter: {
-        getList: {
-          url: `${process.env.VUE_APP_API_DEV}/systemServer/menu/list/1`,
-          methods: 'get',
-          show: true
-        },
         // getList: {
-        //   url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/getDeviceList`,
-        //   methods: 'post',
+        //   url: `${process.env.VUE_APP_API_DEV}/systemServer/menu/list/1`,
+        //   methods: 'get',
         //   show: true
         // },
+        getList: {
+          url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/getDeviceList`,
+          methods: 'post',
+          show: true
+        },
         add: {
           url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/add`,
           methods: 'post',
@@ -55,6 +56,10 @@ export default {
           url: `${process.env.VUE_APP_API_DEV}/deviceServer/device/update`,
           methods: 'put',
           show: true
+        },
+        userDefinedBtn: {
+          show: true,
+          label: '自定义按钮'
         },
         filterAllList: {
           url: `${process.env.VUE_APP_API_DEV}/deviceServer/filter/field/list`,
@@ -108,7 +113,10 @@ export default {
   components: {},
   created() {},
   methods: {
-    godetail() {}
+    godetail() {},
+    userDefined(val) {
+      console.log(val)
+    }
   }
 };
 </script>
