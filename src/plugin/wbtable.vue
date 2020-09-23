@@ -89,7 +89,6 @@
                 tableParameter.userDefinedBtn &&
                   tableParameter.userDefinedBtn.show
               "
-              type="danger"
               @click="userDefinedBtn(scope.$index, scope.row)"
               >{{ tableParameter.userDefinedBtn.label }}</el-button
             >
